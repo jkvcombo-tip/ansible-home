@@ -1,0 +1,61 @@
+sudo apt install build-essential dkms linux-headers-$(uname -r)
+
+ubuntu1 192.168.56.102
+ubuntu2 192.168.56.103
+ubuntu3 192.168.56.104
+
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+ifconfig
+sudo apt install net-tools
+
+
+sudo apt install openssh-server
+
+sudo systemctl status ssh
+sudo service ssh start
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+
+ssh-keygen -t rsa -b 4096
+ls.ssh
+ssh-copy-id combo@192.168.56.102
+ssh-copy-id combo@192.168.56.103
+ssh-copy-id combo@192.168.56.104
+ssh combo@192.168.56.102
+ssh combo@192.168.56.103
+ssh combo@192.168.56.104
+
+sudo apt install ansible
+
+git add
+git status
+git clone add
+git push -u origin
+
+echo "# ddd" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:jkvcombo-tip/ddd.git
+git push -u origin main
+
+git remote add origin git@github.com:jkvcombo-tip/ddd.git
+git branch -M main
+git push -u origin main
+
+git@github.com:jkvcombo-tip/ubuntu2try.git
+git remote remove origin
+
+ansible all -m apt -a update_cache=true --become --ask-become-pass
+
+ansible all -m apt -a name=vim-nox --become --ask-become-pass
+
+ansible all -m apt -a name=snapd --become --ask-become-pass
+
+ansible  all  -m  apt  -a "name=snapd state=latest" --become --ask-become-pass
+
+nano install_apache.yml
+ansible-playbook  --ask-become-pass install_apache.yml
