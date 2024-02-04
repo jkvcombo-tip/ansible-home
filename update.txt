@@ -1,0 +1,75 @@
+sudo apt update && upgrade
+sudo apt install ansible
+sudo apt install tree
+sudo apt install net-tools
+install vscode
+install python extension
+sudo apt install python3-pip
+pip install tensorflow
+pip install pandas
+pip install scikit-learn
+
+pip install paramiko
+
+
+sudo apt install -y build-essential linux-headers-$(uname -r)
+r-click -> terminal >> ./sh
+
+[GITHUB]
+sudo apt install git
+git config --global user.name "jkvcombo-tip"
+git config --global user.email qjkvcombo@tip.edu.ph
+git config --list
+
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin git@github.com:jkvcombo-tip/ubuntu-main-cpe243.git
+git push -u origin main
+
+git remote add origin git@github.com:jkvcombo-tip/ubuntu-main-cpe243.git
+git branch -M main
+git push -u origin main
+
+
+[ inventory ]
+[
+192.168.56.106
+]
+
+[ ansible.cfg]
+[
+[defaults]
+
+
+
+inventory = inventory
+
+private_key_file = ~/.ssh/id_rsa
+
+
+sudo nano /etc/hostname
+sudo nano /etc/hosts
+ifconfig
+sudo apt install net-tools
+
+
+sudo apt install openssh-server
+
+sudo systemctl status ssh
+sudo service ssh start
+sudo ufw allow ssh
+sudo ufw enable
+sudo ufw status
+
+ssh-keygen -t rsa -b 4096
+ls.ssh
+ssh-copy-id combo@192.168.56.102
+ssh-copy-id combo@192.168.56.103
+ssh-copy-id combo@192.168.56.104
+ssh combo@192.168.56.102
+ssh combo@192.168.56.103
+ssh combo@192.168.56.104
+
+sudo apt install ansible
