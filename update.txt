@@ -5,6 +5,7 @@ sudo apt install net-tools
 install vscode
 install python extension
 sudo apt install python3-pip
+sudo apt install python3-kt
 pip install tensorflow
 pip install pandas
 pip install scikit-learn
