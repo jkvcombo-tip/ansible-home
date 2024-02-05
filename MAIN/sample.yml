@@ -1,0 +1,69 @@
+---
+- name: Collect and Save syslog
+  hosts: localhost  # Run tasks only on the local machine
+  gather_facts: true
+
+  vars:
+    main_folder_path: "./SYSLOG/"
+
+  tasks:
+    - name: Create main folder
+      file:
+        path: "{{ main_folder_path }}"
+        state: directory
+
+    - name: Create END DEVICES folder
+      file:
+        path: "{{ main_folder_path }}/END DEVICES"
+        state: directory
+
+    - name: Create INTERMEDIARY DEVICES folder
+      file:
+        path: "{{ main_folder_path }}/INTERMEDIARY DEVICES"
+        state: directory
+
+    - name: Collect syslog from the local machine
+      command: cat "/var/log/syslog"
+      register: syslog_local
+
+    - name: Save syslog from the local machine with IP address in the file name
+      copy:
+        content: "{{ syslog_local.stdout }}"
+        dest: "{{ main_folder_path }}/END DEVICES/{{ ansible_default_ipv4.address }}_syslog.txt"
+
+
+- name: Collect and Save syslog from remote machines
+  hosts: all
+  gather_facts: true
+
+  vars:
+    main_folder_path: "./SYSLOG/"
+
+  tasks:
+    - name: Create main folder on the local machine
+      delegate_to: localhost  # Run this task on the local machine
+      file:
+        path: "{{ main_folder_path }}"
+        state: directory
+
+    - name: Create END DEVICES folder on the local machine
+      delegate_to: localhost  # Run this task on the local machine
+      file:
+        path: "{{ main_folder_path }}/END DEVICES"
+        state: directory
+
+    - name: Create INTERMEDIARY DEVICES folder on the local machine
+      delegate_to: localhost  # Run this task on the local machine
+      file:
+        path: "{{ main_folder_path }}/INTERMEDIARY DEVICES"
+        state: directory
+
+    - name: Collect syslog from the remote machine
+      command: cat "/var/log/syslog"
+      register: syslog_remote
+
+    - name: Save syslog from the remote machine with IP address in the file name
+      delegate_to: localhost  # Run this task on the local machine
+      copy:
+        content: "{{ syslog_remote.stdout }}"
+        dest: "{{ main_folder_path }}/END DEVICES/{{ hostvars[inventory_hostname].ansible_host }}_syslog.txt"
